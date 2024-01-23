@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./api/routes/authRoutes');
 const carRoutes = require('./api/routes/carRoutes');
 const bookingRoutes = require('./api/routes/bookingRoutes');
+const userRoutes = require('./api/routes/userRoutes');
 
 
 
@@ -25,6 +26,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/auth', authRoutes);
 app.use('/api/cars', carRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/users', userRoutes);
 
 
 
