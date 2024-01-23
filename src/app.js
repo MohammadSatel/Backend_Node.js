@@ -5,6 +5,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./api/routes/authRoutes');
+const carRoutes = require('./api/routes/carRoutes');
+
 
 const app = express();
 
@@ -19,6 +21,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/cars', carRoutes);
+
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Car Rental Backend!' });
