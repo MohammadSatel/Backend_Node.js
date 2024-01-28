@@ -23,16 +23,22 @@ MongoDB
 npm
 
 ## API Endpoints
-Auth Routes
-POST /api/auth/signup - Register a new user
-POST /api/auth/login - Login a user
-User Routes
-GET /api/users/profile - Get user profile and booking history
-Car Routes
-POST /api/cars - Add a new car (Admin only)
-GET /api/cars - Get all cars
-Booking Routes
-POST /api/bookings - Create a new booking
+
+# User Routes
+- GET /api/users/profile - Get user profile and booking history
+# Car Routes
+- POST /api/cars - Add a new car (Admin only)
+- GET /api/cars - Get all cars
+- GET /api/cars/:id - Get a car by ID
+- PUT /api/cars/:id - Update a car by ID (Admin only)
+- DELETE /api/cars/:id - Delete a car by ID (Admin only)
+- GET /api/cars/search - Search for cars with filters
+# Booking Routes
+- POST /api/bookings - Create a new booking
+- GET /api/bookings - Get all bookings (Admin only)
+- GET /api/bookings/:id - Get a booking by ID
+- PUT /api/bookings/:id - Update a booking by ID (Admin only)
+- DELETE /api/bookings/:id - Cancel/delete a booking
 
 ## Security
 This application includes basic security features such as JWT based authentication, password hashing, and input validation.
