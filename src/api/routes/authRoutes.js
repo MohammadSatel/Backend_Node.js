@@ -8,14 +8,6 @@ router.post('/signup', authController.signup);
 // Endpoint to handle user login
 router.post('/login', authController.login);
 
-// Endpoint to send a verification email to the user's email address
-// Make sure to implement this controller function to handle the sending of verification emails
-router.post('/send-verification-email', authController.sendVerificationEmail);
-
-// Endpoint to verify the user's email with a token they received
-// Make sure to implement this controller function to verify the token and update the user's email verification status
-router.post('/verify-email', authController.verifyEmail);
-
 // Endpoint for a user to initiate the password reset process
 // Make sure to implement this controller function to handle password reset requests, typically involving sending a password reset email with a token
 router.post('/forgot-password', authController.forgotPassword);
