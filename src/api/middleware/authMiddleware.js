@@ -1,28 +1,30 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
-// Middleware function to authenticate user based on JWT token
 const auth = async (req, res, next) => {
   try {
-    // Get the token from the Authorization header and remove the 'Bearer ' prefix
-    const token = req.header('Authorization').replace('Bearer ', '');
-    // Decode the token using the secret
+    // Extract the token from the Authorization header
+    const authHeader = req.header('Authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).send({ error: 'No token provided or token is malformed' });
+    }
+    const token = authHeader.replace('Bearer ', '');
+
+    // Verify the token using the JWT_SECRET
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
-    // Find the user in the database using the ID from the token
+    // Find the user in the database using the decoded userId
     const user = await User.findOne({ _id: decoded.userId });
-
     if (!user) {
-      // If no user is found, throw an error to be caught by the catch block
-      throw new Error('User not found');
+      throw new Error('User not found with provided token');
     }
 
-    // Attach the user object to the request for use in subsequent handlers
+    // Attach the user and token to the request object
     req.user = user;
-    // Call next to proceed to the next middleware/route handler
-    next();
+    req.token = token; // Optional: In case you need the token in subsequent handlers
+
+    next(); // Proceed to the next middleware or route handler
   } catch (error) {
-    // If anything goes wrong, return a 401 Unauthorized response
     res.status(401).send({ error: 'Please authenticate.' });
   }
 };

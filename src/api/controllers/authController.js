@@ -111,10 +111,14 @@ exports.resetPassword = async (req, res) => {
     if (!user) {
       return res.status(400).send({ message: 'Password reset token is invalid or has expired.' });
     }
-    user.password = newPassword;
+
+    // Hash the new password before saving
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
+
     res.status(200).send({ message: 'Your password has been updated.' });
   } catch (error) {
     res.status(500).send({ message: 'Error resetting password', error });
