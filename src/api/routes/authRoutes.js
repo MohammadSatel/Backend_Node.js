@@ -2,32 +2,31 @@ const express = require('express');
 const authController = require('../controllers/authController');
 const router = express.Router();
 
-// User signup route
+// Endpoint to handle user signup
 router.post('/signup', authController.signup);
 
-// User login route
+// Endpoint to handle user login
 router.post('/login', authController.login);
 
-// Route for sending a verification email to the user
-// Assumes you have a controller function for this
+// Endpoint to send a verification email to the user's email address
+// Make sure to implement this controller function to handle the sending of verification emails
 router.post('/send-verification-email', authController.sendVerificationEmail);
 
-// Route for verifying user's email
-// Assumes you have a controller function for this
+// Endpoint to verify the user's email with a token they received
+// Make sure to implement this controller function to verify the token and update the user's email verification status
 router.post('/verify-email', authController.verifyEmail);
 
-// Route for initiating a password reset process
-// Assumes you have a controller function for this
+// Endpoint for a user to initiate the password reset process
+// Make sure to implement this controller function to handle password reset requests, typically involving sending a password reset email with a token
 router.post('/forgot-password', authController.forgotPassword);
 
-// Route for resetting the password using a token received via email
-// Assumes you have a controller function for this
+// Endpoint for a user to reset their password using a token they received via email
+// Make sure to implement this controller function to allow users to reset their password using a reset token
 router.post('/reset-password', authController.resetPassword);
 
-// Route for refreshing an expired or about-to-expire token
-// Assumes you have a controller function for this
+// Endpoint to refresh an expired or about-to-expire JWT token
+// Make sure to implement this controller function if you plan to use refresh tokens in your authentication strategy
 router.post('/refresh-token', authController.refreshToken);
 
-// Add more routes as needed for your authentication flow
 
 module.exports = router;
