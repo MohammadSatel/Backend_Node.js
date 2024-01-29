@@ -42,3 +42,59 @@ npm
 
 ## Security
 This application includes basic security features such as JWT based authentication, password hashing, and input validation.
+
+
+User Routes:
+Get User Profile
+
+Method: GET
+Endpoint: /api/users/profile
+Description: Fetches the authenticated user's profile information.
+Requires Authentication: Yes (use Bearer Token)
+Update User Profile
+
+Method: PUT
+Endpoint: /api/users/update-profile
+Description: Updates the authenticated user's profile information.
+Requires Authentication: Yes (use Bearer Token)
+Body: JSON payload with the fields you want to update (e.g., { "name": "New Name", "email": "newemail@example.com" })
+Change User Password
+
+Method: PUT
+Endpoint: /api/users/change-password
+Description: Allows the authenticated user to change their password.
+Requires Authentication: Yes (use Bearer Token)
+Body: JSON payload with the current and new password (e.g., { "currentPassword": "oldPassword123", "newPassword": "newPassword123" })
+Authentication Routes:
+User Signup
+
+Method: POST
+Endpoint: /api/auth/signup
+Description: Registers a new user.
+Body: JSON payload with user registration information (e.g., { "email": "user@example.com", "password": "password123", "name": "John Doe" })
+User Login
+
+Method: POST
+Endpoint: /api/auth/login
+Description: Authenticates a user and returns a token.
+Body: JSON payload with user login credentials (e.g., { "email": "user@example.com", "password": "password123" })
+Car Routes (assuming standard CRUD operations):
+Get Cars
+
+Method: GET
+Endpoint: /api/cars
+Description: Fetches a list of cars. (Assuming public access or authenticated users only based on your application's logic)
+Add New Car
+
+Method: POST
+Endpoint: /api/cars
+Description: Adds a new car to the listing.
+Requires Authentication: Yes (for admin users, if applicable)
+Body: JSON payload with car details (e.g., { "make": "Toyota", "model": "Corolla", "year": 2020 })
+Booking Routes (assuming standard CRUD operations):
+Create Booking
+Method: POST
+Endpoint: /api/bookings
+Description: Creates a new booking for a car.
+Requires Authentication: Yes
+Body: JSON payload with booking details (e.g., { "carId": "carObjectId", "startDate": "2023-01-01", "endDate": "2023-01-05" })

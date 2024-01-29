@@ -3,8 +3,17 @@ const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
-// Route to get the user's profile information
-router.get('/profile', authMiddleware, userController.getUserProfile);
+
+// Dummy logout route - for client-side handling
+router.post('/logout', authMiddleware, (req, res) => {
+    // Inform the client to clear the JWT token
+    res.status(200).send({ message: 'Log out successful. Please clear your token.' });
+});
+
+// Route to update the user's profile information
+router.put('/profile', authMiddleware, userController.updateUserProfile);
+
+module.exports = router;
 
 // Route to update the user's profile information
 router.put('/update-profile', authMiddleware, userController.updateUserProfile);
